@@ -1,0 +1,169 @@
+* {
+	box-sizing: border-box;	
+	/* 	CSS variables */
+	--categories-list-width: 200px;
+	--selected-color: #5cbfbf;
+	--mouseover-color: #bf755c;
+	--background-color: hsl(180, 40%, 80%);
+}
+
+body {
+	margin: 0px 5%;
+	font-family: Helvetica;
+	min-width: 800px;
+}
+
+/* ------------  Header ------------  */
+#header {
+	margin-top: 30px;	
+	width: calc(100% - var(--categories-list-width));
+}
+
+#title h1 {
+	margin: 0px auto 10px;
+	text-align: center;
+	font-family: Georgia;
+	font-size: 2.625rem;
+}
+
+#byline {
+	margin: 0px auto 20px;
+	max-width: 40em;
+	text-align: center;
+	font-size: 0.8125rem;
+	font-style: italic;
+}
+
+#description p {
+	margin: 0 auto 10px;
+	max-width: 42em;
+	line-height: 20px;
+	font-size: 0.875rem;
+}
+
+#description a {
+	color: #217ce3;
+	text-decoration: none;
+}
+
+
+/* ------------ Visualization  ------------ */
+
+#visualization-container {
+	position: relative;
+	margin: 10px 0px 40px;
+}
+
+/* Occupation categories list */
+#categories-list {
+	display: inline-block;
+	width: var(--categories-list-width);
+	max-height: calc(100% - 100px);
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	overflow: hidden;
+}
+
+#scroll-container {
+	overflow: hidden;	
+}
+
+#scroll-container:hover {
+	overflow-y: auto;
+}
+
+.category {
+	transition: background-color 0.3s ease-out;
+}
+
+.category[state=selected] {
+	background-color: var(--selected-color);
+}
+
+.category[state=mouseover] {
+	background-color: var(--mouseover-color);	
+}
+
+.category-label {
+	padding: 0.3rem 0 0.3rem 1rem;
+	max-width: calc(var(--categories-list-width) - 1rem);
+	font-size: 0.6875rem;
+	font-weight: 500;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.all .category-label {
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+/* Chart  */
+
+#chart {
+	position: relative;
+	display: inline-block;
+	width: calc(100% - var(--categories-list-width) - 5px);
+	height: 100%;
+}
+
+.axis path {
+	fill: none;
+	stroke: #8b969a;
+	stroke-width: 1px;
+}
+
+.tick line {
+	fill: none;
+	stroke: #8b969a;
+}
+
+.tick text {
+	font-size: 0.625rem;
+}
+
+.x-label, .y-label {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	text-align: center;
+	font-size: 0.625rem;
+	line-height: 0.6875rem;
+	overflow: hidden;
+}
+
+circle {
+	stroke: rgba(0,0,0,0);
+	stroke-width: 7px;
+	transition: fill .3s ease-out;
+}
+
+circle[state=selected] {
+	fill: var(--selected-color);
+}
+
+circle[state=mouseover] {
+	fill: var(--mouseover-color);
+}
+
+circle[state=background] {
+	fill: var(--background-color);
+}
+
+#infobox {
+	position: absolute;
+	top: 60px;
+	left: 70px;
+	width: calc((100% - 120px) / 4);
+	background: white;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+	padding: 10px 5px;
+	text-align: center;
+	font-size: 0.75rem;
+	overflow: hidden;
+}
+
+#infobox span {
+	display: block;
+}

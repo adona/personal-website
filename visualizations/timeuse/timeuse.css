@@ -1,0 +1,430 @@
+* {
+  box-sizing: border-box;
+
+  /* CSS variables */
+  --body-width: 1000px;
+  --timelines-width: 690px;
+  --sidebar-width: 300px;
+  --timeline-container-height: 70px;
+  --filter-checked-color: #247BA0;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+body {
+  width: var(--body-width);
+  margin: 0px 100px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-family: Helvetica;
+}
+
+/* Header */
+
+#header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  width: var(--body-width);
+  background: white;
+}
+
+#header-content {
+  position: relative;
+  width: var(--timelines-width);
+  text-align: left;
+}
+
+#title {
+  margin: 20px 0px 10px;
+}
+
+#title h1 {
+  margin: 0px;
+  font-size: 42px;
+  font-family: Georgia;
+}
+
+#byline {
+  margin-bottom: 15px;
+	font-size: 14px;
+	font-style: italic;
+}
+
+
+#description {
+	margin-bottom: 15px;
+}
+
+#description p {
+  margin: 0px;
+	line-height: 20px;
+	font-size: 14px;
+}
+
+#description a {
+	color: #217ce3;
+	text-decoration: none;
+}
+
+#loading-data, #n-results {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+#n-results, #legend-text {
+  display: inline-block;
+  width: 49.5%;
+}
+
+/* Legend */
+
+#legend-text {
+  position: relative;
+  text-align: right;
+  font-size: 12px;
+}
+
+#show-legend {
+  position: relative;
+  display: inline-block;
+  background: #EFEFEF;
+  padding: 0px 3px;
+  border-radius: 7px;
+  user-select: none;
+}
+
+#show-legend:hover {
+  cursor: pointer;
+}
+
+#legend {
+  width: 275px;
+}
+
+#legend .tooltip-body {
+  text-align: left;
+  padding: 15px;
+}
+
+#legend #legend-title {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+#legend .legend-color {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 15px;
+  margin: 4px 15px 4px 15px;
+}
+
+#legend .legend-description {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#legend-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 13px;
+  color: rgba(0,0,0,.4);
+  user-select: none;
+}
+
+#legend-close:hover {
+  cursor: pointer;
+}
+
+
+/* Filters */
+
+#filters-bar {
+  margin-bottom: 20px;
+}
+
+.filter {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 10px;
+}
+
+.filters-row[row-number="1"] .filter {
+  margin-right: 43px;
+}
+
+.filters-row[row-number="2"] .filter {
+  margin-right: 25px;
+}
+
+.filters-row .filter:last-child {
+  margin-right: 0px;
+}
+
+.filter-name {
+  padding-left: 1px;
+  padding-bottom: 3px;
+  font-size: 12px;
+  color: #000;
+}
+
+.filter-option {
+  display: inline-block;
+}
+
+.filter-option input {
+  display: none;
+}
+
+.filter-option label {
+  padding: 3px 7px;
+  font-size: 12px;
+  color: #000;
+  border: solid lightgrey 1px;
+}
+
+.filter-option:first-child label {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.filter-option:last-child label {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.filter-option input:checked + label {
+  background: #F5F5F5;
+  border-color: var(--filter-checked-color);
+  color: var(--filter-checked-color);
+}
+
+/* Activities search box */
+
+#activities-searchbox {
+  position: relative;
+  width: calc(100% - 5px); /* I don't understand why the 5px adjustment is necessary, but it is. */
+}
+
+#activities-searchbox input {
+  width: 100%;
+  height: 20px;
+  padding: 3px 7px;
+  font-size: 12px;
+  border: solid lightgray 1px;
+  border-radius: 3px;
+}
+
+.suggestions-box {
+  position: absolute;
+  width: calc(100% - 5px);
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: white;
+}
+
+.suggestion-category {
+  padding: 3px 6px;
+  font-size: 14px;
+}
+
+.suggestion-activity {
+  padding: 3px 12px;
+  font-size: 12px;
+}
+
+.suggestions-box .match-count {
+  font-size: 10px;
+  color: grey;
+}
+
+.suggestions-box li.selected {
+  background: #F5F5F5;
+  border: solid var(--filter-checked-color) 1px;
+  color: var(--filter-checked-color);
+}
+
+/* Timelines */
+
+#timelines-list {
+  position: relative;
+  z-index: 1;
+  width: var(--timelines-width);
+}
+
+.timeline-container {
+  position: relative;
+  height: var(--timeline-container-height);
+  margin-bottom: 5px;
+}
+
+.timeline-container .annotations {
+  font-size: 12px;
+}
+
+.timeline-container .profile-summary .demographics {
+  position: absolute;
+  top: 15px;
+  left: 0px;
+  padding-right: 10px;
+}
+
+.timeline-container .profile-summary .day {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  padding-left: 10px;
+}
+
+.timeline-container .timeline {
+  width: 100%;
+  height: 100%;
+}
+
+.axis path {
+  fill: none;
+  stroke: #aaa;
+  stroke-width: 1px;
+}
+
+.tick line {
+  fill: none;
+  stroke: #aaa;
+}
+
+.tick text {
+  font-size: 0.8em;
+}
+
+/* Tooltips */
+
+.tooltip {
+  position: absolute;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  background: lightgray;
+}
+
+.tooltip-arrow[arrow-direction="down"] {
+  bottom: -5px;
+  left: 15px;
+}
+
+.tooltip-arrow[arrow-direction="left"] {
+  top: 50%;
+  left: -5px;
+}
+
+.tooltip-body {
+  position: relative;
+  z-index: 2;
+  background: white;
+  border: solid lightgray 1px;
+  border-radius: 3px;
+  padding: 4px 8px;
+  line-height: 15px;
+  font-size: 12px;
+}
+
+.tooltip-body[arrow-direction="bottom"] {
+  min-height: 23px;
+}
+
+.tooltip-body[arrow-direction="left"] {
+  min-height: 75px;
+}
+
+/* Activity descriptions */
+
+.activity-description .tooltip-body {
+  white-space: nowrap;
+}
+
+/* Person profile */
+
+.profile-card {
+  width: 275px;
+  padding: 10px 15px;
+}
+
+.profile-card .header .icon {
+  display: inline-block;
+  vertical-align: bottom;  
+  width: 60px;
+  height: 70px;
+  margin-left: 4px;
+  margin-right: 13px;
+  opacity: 0.5;
+}
+
+.profile-card .header .summary {
+  display: inline-block;
+  width: calc(100% - 83px);
+}
+
+.profile-card .header .summary .demographics {
+  font-size: 16px;
+}
+
+.profile-card .header .summary .DAY {
+  font-size: 11px;
+  color: grey;
+}
+
+.profile-card .field {
+  margin-bottom: 2px;
+}
+
+.profile-card .field .description {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0px 5px;
+  width: 68px;
+  text-transform: uppercase;
+  font-size: 8px;
+  color: grey;
+  line-height: 12px;
+}
+
+.profile-card .field .description-detail {
+  position: relative; 
+  top: -3px; 
+  text-transform: lowercase;
+  font-size: 10px; 
+}
+
+.profile-card .field .value {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 88px);
+}
+
+.profile-card .field .value ul {
+  margin: 0px;
+  list-style-position: outside;
+}
+
+.profile-card .field .value li {
+  position: relative;
+  left: -17px;
+  text-indent: -3px;
+}
+
+.profile-card .separator {
+  height: 10px;
+}
